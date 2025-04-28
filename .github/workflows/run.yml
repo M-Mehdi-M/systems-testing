@@ -1,11 +1,12 @@
-name: cicd-documentation
+name: Run Python Unit Tests
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
-  run:
-    name: 🚀 Run
+  test:
+    name: 🚀 Run Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -13,8 +14,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🚀 Run
-        shell: bash
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run unit tests
         run: |
-          cd laboratories/cicd-documentation
-          python3 main.py
+          python -m unittest discover -s laboratories/cicd-documentation -p 'test_*.py'
