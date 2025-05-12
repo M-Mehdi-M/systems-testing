@@ -13,7 +13,8 @@ def extract_numbers(s: str) -> list:
     Ex: "abc123def45" -> [123, 45]
     TODO
     """
-    pass
+    # Folosim expresie regulata pentru a extrage numerele
+    return [int(n) for n in re.findall(r'\d+', s)]
 
 
 def safe_divide_list(numbers: list) -> float:
@@ -21,7 +22,11 @@ def safe_divide_list(numbers: list) -> float:
     Împarte primul număr la al doilea.
     TODO
     """
-    pass
+    if len(numbers) < 2:
+        raise ValueError("Lista trebuie să conțină cel puțin două numere")
+    # if numbers[1] == 0:
+    #     raise ValueError("Împărțirea la zero nu este permisă")
+    return numbers[0] / numbers[1]
 
 
 def list_sum(numbers: list) -> int:
@@ -29,7 +34,7 @@ def list_sum(numbers: list) -> int:
     Calculează suma tuturor numerelor din listă.
     TODO
     """
-    pass
+    return sum(numbers)
 
 
 def process_input(data: bytes):
